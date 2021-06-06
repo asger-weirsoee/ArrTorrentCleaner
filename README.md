@@ -32,7 +32,7 @@ Simple executables to remove torrents and optionally blacklist them if they have
 
 `Blacklist` Set to Blacklist the torrent in app so it's not automatically pulled and downloaded again.
 
-[Time Format](Time format: https://golang.org/pkg/time/#ParseDuration)
+[Time Format](https://golang.org/pkg/time/#ParseDuration)
 
 ## Scheduling
 
