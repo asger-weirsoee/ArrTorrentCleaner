@@ -29,6 +29,7 @@ Simple executables to remove torrents and optionally blacklist them if they have
 Currently this does not have a built in scheduler, on linux this is easy to do with cron (see below) on windows you have a few options [see here](https://stackoverflow.com/a/132975)
 
 - On Linux, you can simply run: `crontab -e` and add the following to the bottom of the page.
+
 `*/15 * * * *  go run /path/to/TorrentCleaner/stcleaner.go`
 `*/15 * * * *  go run /path/to/TorrentCleaner/rtcleaner.go`
 - This will run the cleaners every 15 minutes.
