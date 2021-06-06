@@ -11,22 +11,27 @@ Simple executables to remove torrents and optionally blacklist them if they have
 
 ``` json
 {
-    //Time to wait on a torrent that has made no progress before removing it (Time format: https://golang.org/pkg/time/#ParseDuration)
-    "WaitTime": "4h",
-    // Your Sonarr api key
-    "SonarrAPIKey": "xxxxxxxxxxxxxxxx",
-    // The address your Sonnarr install can be found at
-    "SonarrURL": "http://localhost",
-    // The amount of time to wait for a torrent to get past 0% before removing it
-    "ZeroPercentTimeout": "1h",
-    // Blacklist the torrent in Sonarr so it's not downloaded again (Time format: https://golang.org/pkg/time/#ParseDuration)
-    "Blacklist" : true
+"SonarrURL": "http://localhost:8989",
+"RadarrURL": "http://localhost:7878",
+"SonarrAPIKey": "xxxxxxxxxxxxxxxx",
+"RadarrAPIKey": "xxxxxxxxxxxxxxxx",
+"WaitTime": "4h",
+"ZeroPercentTimeout": "1h",
+"Blacklist" : true
 }
+
 ```
+# But for why???
+`SonarrURL|RadarrURL` The URL address of your apps (set to the app default, change as needed for your setup)
+`SonarrAPIKey|RadarrAPIKey` Your api keys, which can be found on the Arr's webUI -> settings -> general
+`WaitTime` Timer for stalled downloads before removing it.
+`ZeroPercentTimeout` Timer for a download to get away from 0% (paused or queued don't count).
+`Blacklist` Set to Blacklist the torrent in app so it's not automatically pulled and downloaded again.
+[Time Format](Time format: https://golang.org/pkg/time/#ParseDuration)
 
 ## Scheduling
 
-Currently this does not have a built in scheduler, on linux this is easy to do with cron (see below) on windows you have a few options [see here](https://stackoverflow.com/a/132975)
+Currently this does not have a built in scheduler, on linux this is easy to do with cron (see below) on windows you have [a few options](https://stackoverflow.com/a/132975)
 
 - On Linux, you can simply run: `crontab -e` and add the following to the bottom of the page.
 
