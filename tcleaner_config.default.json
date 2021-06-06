@@ -1,0 +1,9 @@
+{
+"SonarrURL": "http://localhost:8989",
+"RadarrURL": "http://localhost:7878",
+"SonarrAPIKey": "xxxxxxxxxxxxxxxx",
+"RadarrAPIKey": "xxxxxxxxxxxxxxxx",
+"WaitTime": "4h",
+"ZeroPercentTimeout": "1h",
+"Blacklist" : true
+}
