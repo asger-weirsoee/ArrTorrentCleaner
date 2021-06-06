@@ -1,0 +1,7 @@
+{
+    "WaitTime": "4h",
+    "RadarrAPIKey": "xxxxxxxxxxxxxxxx",
+    "RadarrURL": "http://localhost",
+    "ZeroPercentTimeout": "1h",
+    "Blacklist" : true
+}
