@@ -33,7 +33,7 @@ type Config struct {
 func NewConfig() Config {
 	WaitTime, _ := time.ParseDuration("4h00m")
 	ZeroPercentTimeout, _ := time.ParseDuration("1h00m")
-	SonarrURL := "http://localhost"
+	SonarrURL := "http://localhost:8989"
 	SonarrAPIKey := ""
 	Blacklist := true
 	return Config{WaitTime, ZeroPercentTimeout, SonarrURL, SonarrAPIKey, Blacklist}
@@ -91,7 +91,7 @@ func NewConfigFromFile(file string) Config {
 }
 
 func main() {
-	f, err := os.OpenFile("STCleaner.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, err := os.OpenFile("stc.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("Error opening file: %v.", err)
 	}
@@ -99,9 +99,9 @@ func main() {
 	log.SetOutput(f)
 	log.Println("Starting Sonarr Torrent Cleaner....")
 	log.Printf("Time Is: %v.", time.Now())
-	config = NewConfigFromFile("stcleaner_config.json")
+	config = NewConfigFromFile("config.json")
 
-	file, err := ioutil.ReadFile("stcleaner_queue.json")
+	file, err := ioutil.ReadFile("stc_queue.json")
 	if os.IsNotExist(err) {
 		log.Println("No previous Sonarr queue file found.")
 		queue, err := GetCurrentQueue()
@@ -112,7 +112,7 @@ func main() {
 		} else {
 			log.Println("Pulled the queue from Sonarr, updating local file...")
 			queueJSON, _ := json.Marshal(queue)
-			err = ioutil.WriteFile("stcleaner_queue.json", queueJSON, 0644)
+			err = ioutil.WriteFile("stc_queue.json", queueJSON, 0644)
 			if err != nil {
 				log.Fatal(err.Error())
 			}
@@ -168,7 +168,7 @@ func main() {
 		}
 		log.Println("Queue file updated, saving...")
 		queueJSON, _ := json.Marshal(oldQueue)
-		err = ioutil.WriteFile("stcleaner_queue.json", queueJSON, 0644)
+		err = ioutil.WriteFile("stc_queue.json", queueJSON, 0644)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
