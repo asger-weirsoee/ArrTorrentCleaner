@@ -30,7 +30,8 @@ Simple executables to remove torrents and optionally blacklist them if they have
 
 `ZeroPercentTimeout` Timer for a download to get away from 0% (paused or queued don't count).
 
-`Blacklist` Set to Blacklist the torrent in app so it's not automatically pulled and downloaded again.\b
+`Blacklist` Set to Blacklist the torrent in app so it's not automatically pulled and downloaded again.
+
 [Time Format](Time format: https://golang.org/pkg/time/#ParseDuration)
 
 ## Scheduling
