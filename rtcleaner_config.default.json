@@ -1,7 +1,12 @@
 {
+    //Time to wait on a torrent that has made no progress before removing it (Time format: https://golang.org/pkg/time/#ParseDuration)
     "WaitTime": "4h",
+    // Your Radarr api key
     "RadarrAPIKey": "xxxxxxxxxxxxxxxx",
+    // The address your Radarr install can be found at
     "RadarrURL": "http://localhost",
+    // The amount of time to wait for a torrent to get past 0% before removing it
     "ZeroPercentTimeout": "1h",
+    // Blacklist the torrent in Radarr so it's not downloaded again (Time format: https://golang.org/pkg/time/#ParseDuration)
     "Blacklist" : true
 }
