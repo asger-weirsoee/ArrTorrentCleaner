@@ -4,7 +4,7 @@ Simple executables to remove torrents and optionally blacklist them if they have
 
 ## Usage
 
-- Rename the provided `cleaner_config.default.json`, to be `rtcleaner_config.json` or `stcleaner_config.json` and set it up for your preference.
+- Rename `tcleaner_config.default.json`, to be `tcleaner_config.json` and configure as needed for your setup.
 - Run the executable every x minutes using an external program such as cron (Built in scheduling coming soon) (Recommended time 15 minutes)
 
 ## Config
@@ -21,7 +21,7 @@ Simple executables to remove torrents and optionally blacklist them if they have
 }
 
 ```
-# But for why???
+## But for why???
 `SonarrURL|RadarrURL` The URL address of your apps (set to the app default, change as needed for your setup)
 
 `SonarrAPIKey|RadarrAPIKey` Your api keys, which can be found on the Arr's webUI -> settings -> general
@@ -36,7 +36,7 @@ Simple executables to remove torrents and optionally blacklist them if they have
 
 ## Scheduling
 
-Currently this does not have a built in scheduler, on linux this is easy to do with cron (see below) on windows you have [a few options](https://stackoverflow.com/a/132975)
+Currently there is no built-in scheduler. On linux this is easy to do with cron (see below), on windows you have [a few options](https://stackoverflow.com/a/132975)
 
 - On Linux, you can simply run: `crontab -e` and add the following to the bottom of the page.
 
