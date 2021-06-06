@@ -33,7 +33,7 @@ type Config struct {
 func NewConfig() Config {
 	WaitTime, _ := time.ParseDuration("4h00m")
 	ZeroPercentTimeout, _ := time.ParseDuration("1h00m")
-	RadarrURL := "http://localhost"
+	RadarrURL := "http://localhost:7878"
 	RadarrAPIKey := ""
 	Blacklist := true
 	return Config{WaitTime, ZeroPercentTimeout, RadarrURL, RadarrAPIKey, Blacklist}
@@ -91,7 +91,7 @@ func NewConfigFromFile(file string) Config {
 }
 
 func main() {
-	f, err := os.OpenFile("RadarrTorrentCleaner.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, err := os.OpenFile("rtc.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("Error opening file: %v.", err)
 	}
@@ -99,9 +99,9 @@ func main() {
 	log.SetOutput(f)
 	log.Println("Starting Radarr Torrent Cleaner....")
 	log.Printf("Time Is: %v.", time.Now())
-	config = NewConfigFromFile("rtcleaner_config.json")
+	config = NewConfigFromFile("config.json")
 
-	file, err := ioutil.ReadFile("rtcleaner_queue.json")
+	file, err := ioutil.ReadFile("rtc_queue.json")
 	if os.IsNotExist(err) {
 		log.Println("No previous Radarr queue file found.")
 		queue, err := GetCurrentQueue()
@@ -112,7 +112,7 @@ func main() {
 		} else {
 			log.Println("Pulled the queue from Radarr, updating local file...")
 			queueJSON, _ := json.Marshal(queue)
-			err = ioutil.WriteFile("rtcleaner_queue.json", queueJSON, 0644)
+			err = ioutil.WriteFile("rtc_queue.json", queueJSON, 0644)
 			if err != nil {
 				log.Fatal(err.Error())
 			}
@@ -168,7 +168,7 @@ func main() {
 		}
 		log.Println("Queue file updated, saving...")
 		queueJSON, _ := json.Marshal(oldQueue)
-		err = ioutil.WriteFile("rtcleaner_queue.json", queueJSON, 0644)
+		err = ioutil.WriteFile("rtc_queue.json", queueJSON, 0644)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
